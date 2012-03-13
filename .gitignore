@@ -1,0 +1,7 @@
+# Vagrant
+Vagrantfile
+
+# output
+lib/
+
+.DS_Store
