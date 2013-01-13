@@ -1,0 +1,24 @@
+{
+  "name": "rest-ldap",
+  "version": "0.0.0",
+  "description": "Le but de ce projet est de permettre l'utilisation de la librairie pam_ldap sur un webservice REST OAuth. Ce n'est pas un proxy LDAP <-> REST, l'usage est dédié à la manipulation des classes `posixAccount` et `posixGroup`.",
+  "main": "app.js",
+  "dependencies": {
+    "ldapjs": "~> 0.5.7",
+    "restler": "~> 2.0.1",
+    "moment": "~> 1.7.2",
+    "underscore": "~> 1.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ares-ensiie/rest-ldap.git"
+  },
+  "author": "Paul Chobert",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "354760908defa4011bd8146d3a347990cd4c9f08"
+}
