@@ -1,30 +1,61 @@
-# LDAP-OAuth bindings
+# REST-LDAP
 
-Le but de ce projet est de permettre l'utilisation de la librairie pam_ldap sur un webservice REST OAuth. Ce n'est pas un proxy LDAP <-> REST, l'usage est dédié à la manipulation des classes `posixAccount` et `posixGroup`.
+## Webservice Specs
 
-Ce projet s'addresse à toute entité qui souhaiterais baser son authentifcation sur OAuth mais souhaiterais quand même profiter du très large support de LDAP.
+### BIND USERS
+#### request
+<pre>POST /auth</pre>
+##### parameters
+- `username`
+- `password`
 
-## Fonctionnalités
+#### response
+##### success
+- status `200`
+- no content
 
-- Authentification
-- Changement de mot de passe
+##### failure
+- status `401` 
+- no content
 
-## Installation
+### SEARCH USERS
+#### request
+<pre>GET /users</pre>
+#### response
+- status `200`
 
-- Install [node.js](http://nodejs.org/)
-- Install dependancies : `npm`
-- Start
+```json
+[
+    {
+        "dn": "cn=chobert2010, ou=users, dc=ares",
+        "attributes": {
+            "cn": "chobert2010",
+            "uid": "chobert2010",
+            "uidnumber": 1001,
+            "gidnumber": 1010,
+            "homedirectory": "/home/chobert2010",
+            "loginshell": "/bin/sh",
+            "objectclass": ["posixaccount"]
+        }
+    }
+]
+```
 
-## ROADMAP
+### SEARCH GROUPS
+#### request
+<pre>GET /groups</pre>
+#### response
+- status `200`
 
-- Easier deployment (chef ?)
-- Tests automatisés (Vagrant, chef)
-- Support d'autre methodes d'authentification que 
-- Permettre de decrire le webservice dans un fichier de config.
-- Support de classes personnalisées
-
-## Contribuer
-
-- forkez
-- ajouter une fonctionnalité | corriger un bug
-- envoyer votre pull request (point bonus pour les "[topic branches](http://progit.org/book/ch3-4.html)")
+```json
+[
+    {
+        "dn": "cn=ares, ou=groups, dc=ares",
+        "attributes": {
+            "gidnumber": 1010,
+            "memberuid": ["bee2010", "bertot2010", "chobert2010", "unbekandt2011"],
+            "objectclass": ["posixgroup"]
+        }
+    }
+]
+```
