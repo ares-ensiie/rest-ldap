@@ -1,9 +1,6 @@
 # Vagrant
 Vagrantfile
 
-# output
-lib/
-
 node_modules
 
 .env
